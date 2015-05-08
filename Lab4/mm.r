@@ -22,7 +22,7 @@ otherGroup <- c(B = 14, Br = 4, G = 8, O = 15, R = 7, Y = 8)
 probabilities <- c(0.24, 0.14, 0.16, 0.2, 0.12, 0.14)
 chisq.test(myGroup)
 
-#boxplot ec doesnt twerk
+#boxplot ec 
 classMM <- read.csv("classmm.csv")
 boxplot(classMM)
 
