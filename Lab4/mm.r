@@ -55,7 +55,7 @@ t.test(a,b,var.equal=FALSE)
 # of rolls
 d = 100000
 
-#role two dice 10 times
+#roll two dice 10 times
 dice1 <- sample(6,d,replace=TRUE)
 dice2 <- sample(6,d,replace=TRUE)
 diceAdd <- dice1 + dice2
