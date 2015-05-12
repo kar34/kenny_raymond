@@ -103,19 +103,21 @@ matches <- 3
 # probability of at least 3 numbers matching ≈ 0.0176504
 p = (factorial(choices)/(factorial(matches)*factorial(choices - matches))) * (factorial(numbers - choices)/(factorial(matches)*factorial(numbers - choices - matches))) / (factorial(numbers)/(factorial(choices)*factorial(numbers - choices)))
 
-N = 49
-K = 6
-M = 6
+N = 49 # number of lottery balls
+K = 6 # numbers in a combination
+M = 3 # number of matches
 
-#equation to determine p of at least M matches in K selections with numbers from 1 to N
-(factorial(K)/(factorial(M)*factorial(K - M))) * (factorial(N - K)/(factorial(K - M)*factorial((N - K) - (K - M)))) *1 / (factorial(N)/(factorial(K)*factorial(N - K)))
+# equation to determine p of at least M matches in K selections with numbers from 1 to N
+(factorial(K)/(factorial(M)*factorial(K - M))) * (factorial(N - K)/(factorial(K - M)*factorial((N - K) - (K - M)))) *1 / (factorial(N)/(factorial(K)*factorial(N - K))) / 100
 
-x <- c(0,1,2,3,4,5, 6)
+x <- c(0,1,2,3,4,5,6)
 y <- vector()
 for (i in 0:6) {
   # replace M with i
-  y <- c(y, (factorial(K)/(factorial(i)*factorial(K - i))) * (factorial(N - K)/(factorial(K - i)*factorial((N - K) - (K - i)))) *1 / (factorial(N)/(factorial(K)*factorial(N - K))))
+  y <- c(y, (factorial(K)/(factorial(i)*factorial(K - i))) * (factorial(N - K)/(factorial(K - i)*factorial((N - K) - (K - i)))) *1 / (factorial(N)/(factorial(K)*factorial(N - K))) / 100)
 }
+# update the probability of choosing none of the lottery numbers to 1 - probability of choosing all the other "number of match" possibilities
+y[1] <- (1 - sum(y) - (factorial(K)/(factorial(0)*factorial(K - 0))) * (factorial(N - K)/(factorial(K - 0)*factorial((N - K) - (K - 0)))) *1 / (factorial(N)/(factorial(K)*factorial(N - K))) / 100)
 
 # histogram with probability of atleast x matches in a lottery where 6 nums from 1-49 inclusive are drawn
 plot(x,y,ylim=c(0,1),xlim=c(0,6),type="h",xlab="number of matches",ylab="probability")
